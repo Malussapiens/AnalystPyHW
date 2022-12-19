@@ -9,4 +9,5 @@ seq = {}
 seq_sum = 0
 for i in range(1, n+1):
     seq[i] = round((1+1/i)**i, 2)
-print(sum(seq.values()))
+print(f'Для N={n} {seq}')
+print(f'Сумма {sum(seq.values())}')

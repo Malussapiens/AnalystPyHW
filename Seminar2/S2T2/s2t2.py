@@ -6,8 +6,14 @@
 print('Программа принимает на вход число N и выдает набор произведений чисел от 1 до N.')
 
 n = int(input('Введите число N:-> '))
-prods = [1]
-print(prods)
+# prods = [1]
+# # print(prods)
+# for i in range(2, n+1):
+#     prods.append(prods[i-2]*i)
+# print(prods)
+
+a=1
 for i in range(2, n+1):
-    prods.append(prods[i-2]*i)
-print(prods)
+    print(a, end = ', ')
+    a=a*i
+print(a)

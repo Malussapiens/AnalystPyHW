@@ -6,6 +6,8 @@
 from os import system
 import random as rnd
 
+def console_clear():
+    system('cls')
 
 def random_list(list_length: int, begin_num: int, end_num: int):
     return [rnd.randint(begin_num, end_num) for _ in range(list_length)]
@@ -18,7 +20,7 @@ def sum_of_odd_elements(elements: list):
     return summ
 
 
-system('cls')
+console_clear()
 print('Программа находит сумму элементов списка, стоящих на нечётной позиции')
 n = 11
 a = 1

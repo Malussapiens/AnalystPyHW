@@ -13,7 +13,7 @@ def random_list(list_length: int, begin_num: int, end_num: int):
     return [rnd.randint(begin_num, end_num) for _ in range(list_length)]
 
 
-def sum_of_odd_elements(elements: list):
+def sum_of_odd_elements(elements: list):    # решение через цикл
     summ = 0
     for i in range(1, n, 2):
         summ += my_list[i]
@@ -28,3 +28,4 @@ b = 10
 my_list = random_list(n, a, b)
 print(my_list)
 print(f'Ответ: {sum_of_odd_elements(my_list)}')
+# print(sum(my_list[1::2])) #решение через срез

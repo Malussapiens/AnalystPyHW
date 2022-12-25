@@ -28,7 +28,7 @@ def get_member(coeff:int, pow:int):
 def get_polynome(pow:int):
     polynome = []
     for _ in range(0, pow + 1):
-        coeff = randint(0, 101)
+        coeff = randint(0, 100)
         member = get_member(coeff, pow)
         if member != '':
             polynome.append(member)

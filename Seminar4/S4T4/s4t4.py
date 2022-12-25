@@ -44,19 +44,20 @@ def save_polynome(polynome:str, filename: str):
     msg = poly_path + '\\' + file.name
     return msg
 
+def main():
+    os.system('cls')
+    print('Программа формирует список членов многочлена степени k и записывает их в файл в виде многочлена.')
+    k = int(input('Введите степень многочлена:'))
+    polynome = get_polynome(k)
 
-os.system('cls')
-print('Программа формирует список членов многочлена степени k и записывает их в файл в виде многочлена.')
-k = int(input('Введите степень многочлена:'))
-polynome = get_polynome(k)
+    print(f'Список членов многочлена степени {k}:')
+    print(polynome)
+    s = ' + '.join(polynome)
+    print('Многочлен', s)
+    print('Сохранен в файле:', save_polynome(s, 'polynome.txt'))
 
-print(f'Список членов многочлена степени {k}:')
-print(polynome)
-s = ' + '.join(polynome)
-print('Многочлен', s)
-print('Сохранен в файле:', save_polynome(s, 'polynome.txt'))
-
-
+if __name__ == '__main__':
+    main()
 
 
 

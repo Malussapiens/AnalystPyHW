@@ -36,6 +36,9 @@ def get_prime_divs(num:int):    # возвращает список просты
     return prime_divs
 
 def main():
+    from os import system
+    
+    system("cls")
     print('Программа выводит список простых множителей натурального числа N.')
     n = int(input('Введите N: '))
     if n <= 0:

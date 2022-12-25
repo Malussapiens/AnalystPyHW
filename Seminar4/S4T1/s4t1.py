@@ -4,7 +4,7 @@
 
 # Судя по примеру, требуется вывести число π c заданным количеством
 # цифр после точки
-from os import system
+
 from math import pi
 
 # Вариант решения 1
@@ -29,6 +29,8 @@ def get_pi_by_decimal(prec:int, round_type:str):
         return float(dec(str(pi)).quantize(dec(d), decimal.ROUND_DOWN))
 
 def main():
+    from os import system
+    
     system("cls")
     print('Программа выводит число Пи c указанной точностью')
 # Принимаем ввод от пользователя

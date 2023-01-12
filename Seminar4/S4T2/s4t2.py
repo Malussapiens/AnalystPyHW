@@ -1,13 +1,13 @@
 # 2 Задайте натуральное число N. Напишите программу, которая 
 #     составит список простых множителей числа N.
 
-def get_prime(num:int):    # возвращает ряд положительных простых чисел от 2 до num (алгоритм Эратосфена)
+def get_prime(num:int):    # возвращает ряд положительных простых чисел от 2 до num^0.5 (алгоритм Эратосфена)
     list_prime = []
     if num < 2:
         return -1
     list_prime.append(2)
     if num > 2:
-        for n in range(3, num + 1, 2):
+        for n in range(3, int(num ** 0.5) + 1, 2):
             list_prime.append(n)
     i = 1
     while i < len(list_prime):

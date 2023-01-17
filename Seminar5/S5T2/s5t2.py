@@ -28,18 +28,37 @@ def player_stake():
     return int(stake)
 
 
-def bot_stake():
-    if candies >= stake_limit:
-        stake = randint(1, stake_limit)
-    else:
-        stake = randint(1, candies)
+def bot_stake(mode:int, prev_stake):
+    if mode == 1:
+        # глупый бот
+        if candies >= stake_limit:
+            stake = randint(1, stake_limit)
+        else:
+            stake = randint(1, candies)
+    if mode == 2:
+        # умный бот
+        # если первый ход и конфеты не делятся на ставку+1 без остатка,
+        # то берем n%(stake_limit+1) конфет
+        if candies % (stake_limit + 1) > 0:
+            stake = candies % (stake_limit + 1)
+        # и после дополняем ход противника до (его ставка+1)
+        else:
+            if prev_stake > 0:
+                stake = stake_limit + 1 - prev_stake
+            # если же ходим вторым, то делаем случайные ходы в надежде на ошибку противника
+            else:
+                stake = randint(1, stake_limit)
+        # если ходим вторым и конфеты делятся на ставку+1 без остатка
+        if prev_stake > 0 and candies % (stake_limit + 1) == 0:
+            stake = stake_limit + 1 - prev_stake
     print(f'Компьютер берет {stake} конфет.')
     return stake
 
 
 def get_player_names(players: int):   
-    if players == 1:
+    if players in [1,2]:
         names=['Игрок1', 'Компьютер']
+        players = 1
     else:
         names = ['Игрок1', 'Игрок2']
     for i in range(0, players):
@@ -61,12 +80,13 @@ def show_score():
 # Выбор кол-ва игроков
 # Варианты: 1 игрок (с ботом), 2 игрока
 game_mode = 0
-while game_mode < 1 or game_mode > 2:
+while game_mode < 1 or game_mode > 3:
     system('cls')
     print('Сколько человек играет?')
-    print('1 - один игрок против компьютера')
-    print('2 - два игрока')
-    game_mode = input('Ваш выбор (1 или 2)?: ')
+    print('1 - один игрок против компьютера ("наивный")')
+    print('2 - один игрок против компьютера ("умный")')
+    print('3 - два игрока')
+    game_mode = input('Ваш выбор (1 - 3)?: ')
     if validate_int(game_mode):
         game_mode = int(game_mode)
     else:
@@ -82,8 +102,9 @@ player1_name, player2_name = player_names
 candies = 58
 player1_candies = 0
 player2_candies = 0
-turn = randint(1, 2)
+turn = 2#randint(1, 2)
 stake_limit = 28
+prev_stake = 0
 
 # Приветствие
 print(f'{player1_name}, {player2_name}, давайте сыграем в игру.')
@@ -101,11 +122,13 @@ while candies > 0:
     if turn == 1:
         print(f'Ход игрока {player1_name}')
         stake = player_stake()
+        prev_stake = stake
     else:
         print(f'Ход игрока {player2_name}')
-        if game_mode == 1:
+        if game_mode in [1, 2]:
             system('cls')
-            stake = bot_stake()
+            stake = bot_stake(game_mode, prev_stake)
+            prev_stake = stake
             pause()
         else:
             print(stake)
@@ -135,3 +158,4 @@ if turn == 2:
     print(f'{player1_name} выиграл!')
 else:
     print(f'{player2_name} выиграл!')
+

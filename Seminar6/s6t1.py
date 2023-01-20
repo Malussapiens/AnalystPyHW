@@ -6,25 +6,30 @@
 # AB = √((X2-X1)²+(Y2-Y1)²) - формула длины отрезка на координатной плоскости
 
 import math
+from os import system
 
 
-def validate_input(x, y):
-    try:
-        x = float(x)
-        y = float(y)
-        return True
-    except:
-        print('Значение должно быть числом!')
-        return False
+def get_coords():
+    return tuple(map(int, (input('x-> '), input('y-> '))))
 
 
-print('Введите координаты начала отрезка:')
-x1, y1 = input('x->'), input('y->')
-print('Введите координаты конца отрезка:')
-x2, y2 = input('x->'), input('y->')
-if validate_input(x1, y1) and validate_input(x2, y2):
-    x1, y1 = float(x1), float(y1)
-    x2, y2 = float(x2), float(y2)
+def get_segment():
+    segment = dict()
+    print('Введите координаты начала отрезка:')
+    segment['A'] = get_coords()
+    print('Введите координаты конца отрезка:')
+    segment['B'] = get_coords()
+    return segment
+
+def main():
+    system('cls')
+
+    segment = get_segment()
+    x1, y1 = segment['A']
+    x2, y2 = segment['B']
     length = ((x2-x1)**2+(y2-y1)**2)**0.5
-    
+
     print(f'A ({x1},{y1}); B({x2},{y2}) -> {float("{0:.2f}".format(length))}')
+
+if __name__ == '__main__':
+    main()

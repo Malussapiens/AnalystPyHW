@@ -11,14 +11,24 @@ def is_file_exist(filename):
     except FileNotFoundError:
         return False
 
-
+# Чтение из файла в массив строк
 def load_txt(filename:str):
     file = open(filename, 'r')
     s = file.readlines()
     file.close()
     return s
 
-def save_txt(text:str, filename:str, modifier:str):
+
+# Чтение строки из файла
+def load_string_txt(filename:str):
+    file = open(filename, 'r')
+    s = file.readline()
+    file.close()
+    return s
+
+
+# Сохранение строки в файл
+def update_txt(text:str, filename:str, modifier:str):
     file = open(filename, modifier)
     file.write(text)
     file.close()
@@ -26,3 +36,5 @@ def save_txt(text:str, filename:str, modifier:str):
     file_path = os.path.abspath(file_path)
     msg = file_path + '\\' + file.name
     return msg
+
+# Перезапись файла

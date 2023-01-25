@@ -19,3 +19,5 @@
     идем дальше
 9 Выводим прощальное сообщение
 10 Конец
+
+file('file2.txt','w').write( file('file.txt').read().encode('utf-8')

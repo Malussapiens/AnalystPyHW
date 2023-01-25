@@ -1,11 +1,11 @@
 # зададим формат вывода записи (макс. число знаков в поле)
 
-horizontal_line = '-'*127
+horizontal_line = '-'*114
 
 
 # Функции вывода информации
 def show_horizontal_line():
-    print('-'*127)
+    print('-'*114)
 
 
 def show_head(head_entry:tuple, entry_format:tuple):
@@ -26,26 +26,19 @@ def show_entry(entry:tuple, entry_format:tuple):
     string = ''
     for n, e in enumerate(entry):
         string += str(e).ljust(entry_format[n], ' ')
-    print(string)
+    print(string.strip())
 
 
-def show_entries(entries:list, entry_format:tuple):
-    for entry in entries:
+def show_entries(entries:dict, entry_format:tuple):
+    for key in entries:
+        entry = tuple([key, *entries[key]])
         show_entry(entry, entry_format)
 
+
+def show_menu(menu_items:list):
+    for num, item in enumerate(menu_items, 1):
+        print(f'{num} - {item}')
+
 # Функции ввода информации
-def get_field(field_name:str, field_length:int):
-    field = input(f'Введите {field_name} (макс. {field_length} символов)')
-    while True:
-        if 0 < len(field) <= field_length:
-            return field
-        else:
-            print('Некорректное значение!')
-            field = input(f'Введите {field_name} (макс. {field_length} символов)')
-
-
-def get_entry(entry_format, field_names):
-    entry = []
-    for name, len in zip(field_names, entry_format):
-        entry.append(get_field(name, len))
-    return tuple(entry)
+def get_user_input(prompt:str):
+    return input(prompt)

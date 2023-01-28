@@ -126,5 +126,3 @@ def run():
         elif user_choice == 4:
             print('Выходим!')
             break
-
-run()

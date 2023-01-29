@@ -13,7 +13,7 @@ def is_vacant_position(position):
 def validate_pos(pos):
     if pos.isdigit():
         pos = int(pos)
-        if 1 <= pos <= 9 and is_vacant_position(pos):
+        if 1 <= pos <= 9 and is_vacant_position(pos - 1):
             return True
     return False
 

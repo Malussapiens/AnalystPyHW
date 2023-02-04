@@ -1,6 +1,10 @@
 
 table = [' ' for _ in range(9)] # Состояние поля
 
+def reset_field():
+    global table
+    table = [' ' for _ in range(9)]
+
 # возвращает состояние игры
 def get_table():
     return table

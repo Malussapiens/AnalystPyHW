@@ -4,7 +4,8 @@ import model
 import view
 from random import randint
 
-bot = telebot.TeleBot("")   # вставьте сюда токен для бота
+bot = telebot.TeleBot("6130068563:AAHA-cXjVbUUBhrEBa-PLA-lzuueah3-Pmw")   # вставьте сюда токен для бота
+
 names = []
 tokens = []
 wins = [(0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6)]
@@ -12,6 +13,20 @@ val = -1
 switch = 0
 u_move = ''
 turn_count = 0
+
+def restart(message):
+    bot.send_message(message.chat.id, 'рестарт')
+    global names
+    global tokens
+    global val
+    global switch
+    global turn_count
+    names = []
+    tokens = []
+    val = -1
+    switch = 0
+    turn_count = 0
+    model.reset_field()
 
 # определяет победителя
 def is_win():
@@ -125,6 +140,7 @@ def switch_players():
 
 def option(message):
     if message.text.lower() == 'yes':
+        restart(message)   
         get_player_names(message)
         coin_toss()
         bot.send_message(message.chat.id, f'Вам достались {names[0][1]}')

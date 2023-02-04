@@ -4,7 +4,7 @@ import model
 import view
 from random import randint
 
-bot = telebot.TeleBot("6130068563:AAHA-cXjVbUUBhrEBa-PLA-lzuueah3-Pmw")   # вставьте сюда токен для бота
+bot = telebot.TeleBot("")   # вставьте сюда токен для бота
 
 names = []
 tokens = []
